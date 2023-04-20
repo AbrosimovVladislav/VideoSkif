@@ -10,7 +10,7 @@ public class MusicService {
   //ToDo Implement
   public String getRandomMusicByTopicName(String topicName){
 
-    return "https://creators.aiva.ai/publicPlayer?c=64415e2c5ff7d4001c007b38";
+    return "https://gunmarket.fra1.digitaloceanspaces.com/Roman%20Republic.mp3";
   }
 
 }

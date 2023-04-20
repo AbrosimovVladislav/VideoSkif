@@ -1,10 +1,12 @@
 package com.videoskif.service;
 
+import java.security.KeyPair;
+import java.util.AbstractMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,8 +15,8 @@ public class DalleService {
 
   public Map<String, String> getPicturesByPhrases(List<String> phrases) {
     return phrases.stream()
-        .map(e -> Pair.of(e, getPictureByPhrase(e)))
-        .collect(Collectors.toMap(e -> e.getFirst(), e -> e.getSecond()));
+        .map(e -> new AbstractMap.SimpleEntry<>(e, getPictureByPhrase(e)))
+        .collect(Collectors.toMap(e -> e.getKey(), e -> e.getValue()));
   }
 
   //ToDo Implement

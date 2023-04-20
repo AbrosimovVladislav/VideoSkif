@@ -1,5 +1,6 @@
 package com.videoskif.web.api;
 
+import com.videoskif.service.FfmpegVideoGenerator;
 import com.videoskif.service.GenerationOrchestrator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,10 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class MainController {
 
   private final GenerationOrchestrator orchestrator;
+  private final FfmpegVideoGenerator generator;
 
   @GetMapping("/topic/{topicName}")
   public void generateVideosByTopic(@PathVariable String topicName){
-
+    generator.generateVideo();
   }
 
 }

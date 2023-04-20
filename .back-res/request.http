@@ -1,0 +1,3 @@
+### GET request with a header
+GET http://localhost:8085/topic/qwe
+Accept: application/json
