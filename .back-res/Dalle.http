@@ -1,0 +1,20 @@
+#
+# curl https://api.openai.com/v1/images/generations
+#  -H "Content-Type: application/json"
+#  -H "Authorization: Bearer $OPENAI_API_KEY"
+#  -d '{
+#    "prompt": "a white siamese cat",
+#    "n": 1,
+#    "size": "1024x1024"
+#  }'
+POST https://api.openai.com/v1/images/generations
+Authorization: Bearer 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
+Content-Type: application/json
+
+{
+  "prompt": "The Roman Republic was known for its infrastructure. AND It built roads, aqueducts, and public works.",
+  "n": 1,
+  "size": "1024x1024"
+}
+
+###

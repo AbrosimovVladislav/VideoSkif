@@ -1,0 +1,4 @@
+### GET request with a header
+GET http://ws.audioscrobbler.com/2.0/?api_key=06193b3855c2c2532b810cae364cc992&format=json&method=track.search&track=Roman Empire
+#Authorization: Bearer 06193b3855c2c2532b810cae364cc992
+Accept: application/json
