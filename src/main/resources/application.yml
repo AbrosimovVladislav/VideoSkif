@@ -1,6 +1,9 @@
 server:
   port: 8085
 
+open-ai:
+  bearer-key:
+
 video-generation:
   audio-path: /Users/vladislavabrosimov/IdeaProjects/VideoSkif/src/main/resources/input.mp3
   output-path: /Users/vladislavabrosimov/IdeaProjects/VideoSkif/src/main/resources/output{num}.mp4
