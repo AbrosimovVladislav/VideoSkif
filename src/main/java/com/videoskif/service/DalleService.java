@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -20,6 +21,9 @@ import org.springframework.web.client.RestTemplate;
 @Service
 @RequiredArgsConstructor
 public class DalleService {
+
+  @Value("${open-ai.bearer-key}")
+  public String BEARER_KEY;
 
   private final RestTemplate restTemplate;
   private final S3Service s3Service;
@@ -39,7 +43,7 @@ public class DalleService {
     String url = "https://api.openai.com/v1/images/generations";
     HttpHeaders headers = new HttpHeaders();
     headers.setContentType(MediaType.APPLICATION_JSON);
-    headers.setBearerAuth("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");
+    headers.setBearerAuth(BEARER_KEY);
 
     HttpEntity<DalleRequestBody> requestEntity = new HttpEntity<>(
         new DalleRequestBody(makePhraseMoreAccurateForDalleModel(phrase), 1, size), headers);

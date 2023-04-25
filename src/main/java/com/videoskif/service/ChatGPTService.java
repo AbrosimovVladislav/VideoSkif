@@ -1,6 +1,5 @@
 package com.videoskif.service;
 
-import com.videoskif.service.DalleService.DalleRequestBody;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -8,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -20,32 +20,22 @@ import org.springframework.web.client.RestTemplate;
 @RequiredArgsConstructor
 public class ChatGPTService {
 
+  @Value("${open-ai.bearer-key}")
+  public String BEARER_KEY;
+
   private final RestTemplate restTemplate;
 
   //ToDo Implement
   public List<String> getPhrasesByTopicName(String topicName) {
 
     return gptCall(topicName, 5);
-
-//    return List.of(
-//        "The Roman Republic was known for its infrastructure AND It built roads, aqueducts, and public works",
-//        "The Roman Republic began in 509 BC AND It replaced the Roman monarchy",
-//        "The Roman Republic was founded on shared power AND Executive, legislative, and judicial branches shared power",
-//        "The highest office in the Roman Republic was consul AND Two consuls were elected each year",
-//        "The Roman Republic's legal system was codified AND The Twelve Tables were a key part"
-////        "The Roman Republic was an expansionist power AND It conquered numerous territories",
-////        "The Roman Republic had a strong military AND Soldiers were loyal to the state",
-////        "The Roman Republic had a complex social hierarchy AND Plebeians and patricians had different status",
-////        "The Roman Republic was a polytheistic society AND Religion played an important role",
-////        "The Roman Republic fell in 27 BC AND It was replaced by the Roman Empire"
-//    );
   }
 
   public List<String> gptCall(String topicName, Integer amount) {
     String url = "https://api.openai.com/v1/chat/completions";
     HttpHeaders headers = new HttpHeaders();
     headers.setContentType(MediaType.APPLICATION_JSON);
-    headers.setBearerAuth("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");
+    headers.setBearerAuth(BEARER_KEY);
 
     HttpEntity<GPTRequestBody> requestEntity = new HttpEntity<>(
         new GPTRequestBody().gptRequestBody(topicName, amount), headers);
@@ -59,8 +49,6 @@ public class ChatGPTService {
     lines = lines.replace("\"},\"finish_reason\":\"stop\",\"index\":0}]}","");
     lines = lines.replace(".\\n","@");
     return Arrays.stream(lines.split("@")).collect(Collectors.toList());
-//    String content = response.getBody().getChoices().get(0).getMessage().getContent();
-//    return Arrays.stream(content.split(".\\n2.")).collect(Collectors.toList());
   }
 
   @Data
