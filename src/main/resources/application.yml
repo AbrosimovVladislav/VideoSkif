@@ -2,7 +2,6 @@ server:
   port: 8085
 
 video-generation:
-  image-path: /Users/vladislavabrosimov/IdeaProjects/VideoSkif/src/main/resources/image1.png
   audio-path: /Users/vladislavabrosimov/IdeaProjects/VideoSkif/src/main/resources/input.mp3
   output-path: /Users/vladislavabrosimov/IdeaProjects/VideoSkif/src/main/resources/output{num}.mp4
 

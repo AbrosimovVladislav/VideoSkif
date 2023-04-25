@@ -10,8 +10,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class FfmpegVideoGenerator {
 
-  @Value("${video-generation.image-path}")
-  public String IMAGE_PATH;
   @Value("${video-generation.audiopath}")
   public String AUDIO_PATH;
   @Value("${video-generation.output-path}")
