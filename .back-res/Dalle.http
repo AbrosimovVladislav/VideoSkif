@@ -8,7 +8,7 @@
 #    "size": "1024x1024"
 #  }'
 POST https://api.openai.com/v1/images/generations
-Authorization: Bearer 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
+
 Content-Type: application/json
 
 {
