@@ -1,17 +1,28 @@
 package com.videoskif.service;
 
-import java.security.KeyPair;
 import java.util.AbstractMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.stream.Collectors;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class DalleService {
+
+  private final RestTemplate restTemplate;
+  private final S3Service s3Service;
 
   public Map<String, String> getPicturesByPhrases(List<String> phrases) {
     return phrases.stream()
@@ -21,8 +32,65 @@ public class DalleService {
 
   //ToDo Implement
   private String getPictureByPhrase(String phrase) {
-
-    return "https://oaidalleapiprodscus.blob.core.windows.net/private/org-oymrFb2GrdFZbEK4snFqDPoG/user-XPJIyq8TpKMoKahb9vectKGs/img-GuBWAVZwbp61opuqg2Yt3Tng.png?st=2023-04-20T13%3A48%3A11Z&se=2023-04-20T15%3A48%3A11Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-04-20T10%3A26%3A49Z&ske=2023-04-21T10%3A26%3A49Z&sks=b&skv=2021-08-06&sig=fQk45/xVgHZu4YeTVa14/HO0M0gjBVEwpNet/OOqN%2Bo%3D";
+    return dalleCall(phrase, "1024x1024");
   }
+
+  private String dalleCall(String phrase, String size) {
+    String url = "https://api.openai.com/v1/images/generations";
+    HttpHeaders headers = new HttpHeaders();
+    headers.setContentType(MediaType.APPLICATION_JSON);
+    headers.setBearerAuth("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");
+
+    HttpEntity<DalleRequestBody> requestEntity = new HttpEntity<>(
+        new DalleRequestBody(makePhraseMoreAccurateForDalleModel(phrase), 1, size), headers);
+    ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, requestEntity,
+        String.class);
+    String image = response.getBody();
+    image = image.substring(image.indexOf("\"url\":"));
+    image = image.replace("\"url\": \"", "");
+    image = image.replace("\"", "");
+    image = image.replace("}", "");
+    image = image.replace("]", "");
+    log.info("Image link received from Dalle <{}>", image);
+
+    String savedImageLink = s3Service.saveImageToStore(image, phrase + "-" + Math.random());
+
+    return savedImageLink;
+  }
+
+  private String makePhraseMoreAccurateForDalleModel(String phrase) {
+    return phrase + " ultra realistic picture";
+  }
+
+  @Data
+  class DalleResponse {
+
+    Integer status;
+    String headers;
+    DalleResponseBody body;
+  }
+
+  @Data
+  class DalleResponseBody {
+
+    Long created;
+    List<String> data;
+  }
+
+  @Data
+  @AllArgsConstructor
+  class DalleRequestBody {
+
+    String prompt;
+    Integer n;
+    String size;
+  }
+
+  /*
+  * {
+  "prompt": "The Roman Republic was known for its infrastructure. AND It built roads, aqueducts, and public works.",
+  "n": 1,
+  "size": "1024x1024"
+}*/
 
 }

@@ -1,0 +1,51 @@
+***
+I have one app
+On input I give some topic to it
+After that this app goes to ChatGPT and get 10 facts about this topic
+After that I ask Dalle to give me 10 pictures, one for each fact
+After that i ask Aiva to give me 1 song connected to this topic
+After that I create generate short video for Youtube shorts through ffmpeg
+This video is like light zooming on the picture, and a fact is on this picture there too
+Length is around 14 seconds
+Also after 10 seconds of fact, Im changing fact text to text like:
+'Wanna know more about it? Check link in description'
+And in description I have link for referral program to amazon books.
+So people, who will be interested in this fact, can buy book about this topic in amazon,
+and i can have some money from referral.
+
+Few question
+1) What do u think about this app?
+2) Estimate this app from 1 to 10
+3) What is possible ways, to make this app more interesting?
+4) What is possible next steps for this app, or to which app I should convert this one
+to make it more interesting?
+5) What do u think about choosen way of monetisation, and do u have ideas about additional
+monetisation on this app?
+6) What will be your recomendations about this app?
+
+*
+I think this is a very interesting and creative app idea that utilizes multiple AI technologies
+to generate content. It could be a useful tool for people who want to quickly learn about a new
+topic and get visual and musical inspiration related to that topic.
+I would give this app a score of 7 out of 10, as it has potential for usefulness and creativity,
+but there may be some challenges in getting all the different technologies and processes to work
+seamlessly together.
+To make the app more interesting, you could consider adding more customization options for users,
+such as the ability to select specific types of pictures or songs. You could also consider adding
+a social component, such as allowing users to share their generated videos with friends and
+followers.
+One possible next step for this app could be to expand it into a broader content generation
+platform, where users could input a variety of topics and receive not just visual and musical
+content, but also written content, such as articles or blog posts. Another possible direction
+could be to integrate with social media platforms, allowing users to generate content
+specifically for Instagram or TikTok.
+The chosen way of monetization through referral links to Amazon books could be effective,
+as it offers a clear value proposition to users and could generate revenue over time.
+One potential additional monetization strategy could be to offer premium features or content
+for a subscription fee, such as access to more advanced customization options or exclusive content.
+My recommendations for this app would be to focus on creating a seamless user experience that
+is easy to use and navigate. You should also prioritize getting all the different technologies
+and processes to work together effectively, as this will be key to the success of the app.
+Additionally, you may want to consider conducting user research to gather feedback and insights
+about what users like and don't like about the app, and use that information to improve the product
+over time.
