@@ -49,3 +49,34 @@ and processes to work together effectively, as this will be key to the success o
 Additionally, you may want to consider conducting user research to gather feedback and insights
 about what users like and don't like about the app, and use that information to improve the product
 over time.
+
+***
+Sounds not bad
+But also, provide me 10 directions or apps which I can build on top of this one
+So, now it has no ui, it is just web server with one endpoint, which generates 5 videos
+by some topic
+
+*
+Sure, here are ten potential directions or apps that you could build on top of your initial idea:
+
+- A mobile app that allows users to easily input a topic, select visual and musical preferences,
+and generate a short video that they can share on social media platforms like Instagram or TikTok.
+- An educational app that uses your technology to help students learn about different topics in a
+fun and engaging way. For example, students could input a historical event and receive a visual
+and musical presentation that helps them understand the context and significance of that event.
+- A content creation platform for businesses or marketers. Brands could input a topic or product
+and receive visual and musical content that they could use in their marketing campaigns.
+- A news app that uses your technology to provide quick, visual summaries of the top news
+stories of the day.
+- A social media aggregator that collects and curates content from different social media
+platforms based on a specific topic, and presents it in a visually appealing way.
+- An event planning app that helps users create engaging and visually compelling presentations
+for conferences, meetings, or other events.
+- A travel app that uses your technology to provide users with a visual and musical introduction
+to different destinations around the world.
+- A recipe app that uses your technology to provide users with a visual and musical presentation
+of different recipes, along with step-by-step instructions.
+- A fitness app that uses your technology to provide users with a visual and musical introduction
+to different workout routines or exercises.
+- An art or music education app that uses your technology to help users explore different art or
+music genres, artists, or composers in a visually engaging way.
