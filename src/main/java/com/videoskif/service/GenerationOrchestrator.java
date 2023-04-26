@@ -15,9 +15,10 @@ public class GenerationOrchestrator {
   private final MusicService musicService;
   private final PhraseCombinator phraseCombinator;
   private final FfmpegVideoGenerator generator;
+  private final TextReadingService textReadingService;
 
-  public List<String> generateVideos(String topicName) {
-    var phrases = chatGPTService.getPhrasesByTopicName(topicName);
+  public List<String> generateVideos(String topicName, Integer amountOfVideos) {
+    var phrases = chatGPTService.getPhrasesByTopicName(topicName, amountOfVideos);
     var phrasesAndPictures = dalleService.getPicturesByPhrases(phrases);
     var music = musicService.getRandomMusicByTopicName(topicName);
 
@@ -27,7 +28,7 @@ public class GenerationOrchestrator {
           var twoPartsPhrase = phraseCombinator.twoPartsPhrase(phrase);
           return generator.generateVideo(twoPartsPhrase.getKey(), twoPartsPhrase.getValue(),
               e.getValue(),
-              music);
+              music, textReadingService.readText(phrase));
         })
         .collect(Collectors.toList());
 

@@ -26,9 +26,9 @@ public class ChatGPTService {
   private final RestTemplate restTemplate;
 
   //ToDo Implement
-  public List<String> getPhrasesByTopicName(String topicName) {
+  public List<String> getPhrasesByTopicName(String topicName, Integer amountOfVideos) {
 
-    return gptCall(topicName, 5);
+    return gptCall(topicName, amountOfVideos);
   }
 
   public List<String> gptCall(String topicName, Integer amount) {
