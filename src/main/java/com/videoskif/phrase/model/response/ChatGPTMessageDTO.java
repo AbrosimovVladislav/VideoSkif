@@ -1,4 +1,4 @@
-package com.videoskif.web.api.dto;
+package com.videoskif.phrase.model.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class SaveImageRequest{
-  private String src;
+public class ChatGPTMessageDTO {
+
+  private String role;
+  private String content;
 }

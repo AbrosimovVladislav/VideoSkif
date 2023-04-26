@@ -1,4 +1,4 @@
-package com.videoskif.service;
+package com.videoskif.phrase.component;
 
 import java.util.AbstractMap.SimpleEntry;
 import java.util.Map;

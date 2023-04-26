@@ -1,6 +1,5 @@
-package com.videoskif.web.api;
+package com.videoskif;
 
-import com.videoskif.service.GenerationOrchestrator;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -11,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-public class MainController {
+public class VideoGenApi {
 
   private final GenerationOrchestrator orchestrator;
 

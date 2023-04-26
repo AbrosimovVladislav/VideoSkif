@@ -3,9 +3,17 @@ server:
 
 open-ai:
   bearer-key:
+  chat-gpt-url: https://api.openai.com/v1/chat/completions
+  dalle-url: https://api.openai.com/v1/images/generations
+
+image-generation:
+  size: 1024x1024
+
+text-speech:
+  output-path: src/main/resources/text-speech/
 
 video-generation:
-  output-path: /Users/vladislavabrosimov/IdeaProjects/VideoSkif/src/main/resources/output{num}.mp4
+  output-path: src/main/resources/video/output{num}.mp4
 
 do:
   spaces:

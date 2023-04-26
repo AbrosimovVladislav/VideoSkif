@@ -1,22 +1,27 @@
-package com.videoskif.service;
+package com.videoskif.ffmpegsdk;
 
+import com.videoskif.random.RandomService;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class FfmpegVideoGenerator {
 
   @Value("${video-generation.output-path}")
   public String OUTPUT_PATH;
 
+  private final RandomService randomService;
+
   public String generateVideo(String firstPhrase, String secondPhrase, String image, String music,
       String phraseSound) {
 
-    String outputPath = OUTPUT_PATH.replace("{num}", String.valueOf(Math.random()));
+    String outputPath = OUTPUT_PATH.replace("{num}", String.valueOf(randomService.randomNumber()));
 
     String[] cmd = {"/opt/homebrew/bin/ffmpeg", "-loop", "1", "-i", image, "-i", music, "-i",
         phraseSound,

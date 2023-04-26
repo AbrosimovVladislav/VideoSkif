@@ -1,4 +1,4 @@
-package com.videoskif.service;
+package com.videoskif.amazon;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
@@ -40,7 +40,9 @@ public class S3Service {
       log.error("Image downloading failed for product image: " + imgName);
       e.printStackTrace();
     }
-    return "https://" + doSpaceBucket + "." + doSpaceEndpoint + "/" + imgName;
+    String url = "https://" + doSpaceBucket + "." + doSpaceEndpoint + "/" + imgName;
+    log.info("Image successfully saved to S3. Image URL:<{}>", url);
+    return url;
   }
 
   public String saveSoundToStore(File soundFile, String soundName) {
@@ -55,7 +57,10 @@ public class S3Service {
       log.error("Sound uploading failed for audio file: " + soundName);
       e.printStackTrace();
     }
-    return "https://" + doSpaceBucket + "." + doSpaceEndpoint + "/" + soundName;
+
+    String url = "https://" + doSpaceBucket + "." + doSpaceEndpoint + "/" + soundName;
+    log.info("Sound successfully saved to S3. Image URL:<{}>", url);
+    return url;
   }
 
 }

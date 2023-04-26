@@ -1,7 +1,12 @@
-package com.videoskif.service;
+package com.videoskif;
 
+import com.videoskif.ffmpegsdk.FfmpegVideoGenerator;
+import com.videoskif.image.service.ImageGeneratorService;
+import com.videoskif.phrase.component.PhraseCombinator;
+import com.videoskif.phrase.service.PhraseGeneratorService;
+import com.videoskif.music.MusicService;
+import com.videoskif.textspeech.TextReadingService;
 import java.util.List;
-import java.util.Map.Entry;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -10,16 +15,16 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class GenerationOrchestrator {
 
-  private final ChatGPTService chatGPTService;
-  private final DalleService dalleService;
+  private final PhraseGeneratorService phraseGeneratorService;
+  private final ImageGeneratorService imageGeneratorService;
   private final MusicService musicService;
   private final PhraseCombinator phraseCombinator;
   private final FfmpegVideoGenerator generator;
   private final TextReadingService textReadingService;
 
   public List<String> generateVideos(String topicName, Integer amountOfVideos) {
-    var phrases = chatGPTService.getPhrasesByTopicName(topicName, amountOfVideos);
-    var phrasesAndPictures = dalleService.getPicturesByPhrases(phrases);
+    var phrases = phraseGeneratorService.getPhrasesByTopicName(topicName, amountOfVideos);
+    var phrasesAndPictures = imageGeneratorService.getPicturesByPhrases(phrases);
     var music = musicService.getRandomMusicByTopicName(topicName);
 
     return phrasesAndPictures.entrySet().stream()
