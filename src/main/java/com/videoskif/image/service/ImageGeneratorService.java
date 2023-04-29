@@ -41,7 +41,7 @@ public class ImageGeneratorService {
     String responseBody = response.getBody();
     String image = convertResponseToImage(Objects.requireNonNull(responseBody));
     log.info("Request to Dalle successfully done. Image Url:<{}>", image);
-    return s3Service.saveImageToStore(image, phrase + "-" + randomService.randomNumber());
+    return s3Service.saveImageToStore(image, phrase.strip() + "-" + randomService.randomNumber());
   }
 
   private String convertResponseToImage(String response) {

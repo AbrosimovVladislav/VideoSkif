@@ -3,7 +3,9 @@ package com.videoskif.ffmpegsdk;
 import com.videoskif.ffmpegsdk.model.FfmpegCommand;
 import com.videoskif.random.RandomService;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,16 +19,21 @@ public class FfmpegVideoGenerator {
 
   public static final String ADDITIONAL_PHRASE = "If you want to know more, check link in the description!";
 
-  @Value("${video-generation.output-path}")
-  public String OUTPUT_PATH;
+  @Value("${video-generation.output.directory}")
+  public String DIRECTORY_PATH;
+
+  @Value("${video-generation.output.filename_pattern}")
+  public String FILENAME_PATTERN;
 
   private final RandomService randomService;
   private final FfmpegCommandConverter ffmpegCommandConverter;
 
   public String generateVideo(String firstPhrase, String secondPhrase, String image, String music,
       String phraseSound) {
+    var outputDirectory = new File(DIRECTORY_PATH);
+    outputDirectory.mkdirs();
 
-    String outputPath = OUTPUT_PATH.replace("{num}", String.valueOf(randomService.randomNumber()));
+    String outputPath = DIRECTORY_PATH + FILENAME_PATTERN.replace("{num}", String.valueOf(randomService.randomNumber()));
 
     String[] cmd = ffmpegCommandConverter.getCommand(
         FfmpegCommand.builder()
@@ -52,6 +59,8 @@ public class FfmpegVideoGenerator {
 //            + "':fontcolor=white:fontsize=40:x=(w-text_w)/2:y=(h-text_h)/2:enable='between(t,11,14)'",
 //        "-shortest",
 //        "-t", "14", outputPath};
+
+    System.out.println("AFTER ffmpeg_command: " + Arrays.toString(cmd));
 
     ProcessBuilder pb = new ProcessBuilder(cmd);
     pb.redirectErrorStream(true);

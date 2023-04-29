@@ -1,14 +1,27 @@
 package com.videoskif.ffmpegsdk;
 
 import com.videoskif.ffmpegsdk.model.FfmpegCommand;
+import lombok.SneakyThrows;
 import org.springframework.stereotype.Component;
+
+import java.io.InputStream;
 
 @Component
 public class FfmpegCommandConverter {
 
-  public String[] getCommand(FfmpegCommand ffmpegCommand) {
+  private final String ffmpegExecutable;
 
-    String ffmpegStart = ffmpegCommand.getFfmpegStart();
+  @SneakyThrows
+  public FfmpegCommandConverter() {
+    var proc = new ProcessBuilder("command", "-v", "ffmpeg").start();
+    try (InputStream is = proc.getInputStream()) {
+      ffmpegExecutable = new String(is.readAllBytes()).strip();
+    }
+  }
+
+  public String[] getCommand(FfmpegCommand ffmpegCommand) {
+    System.out.println("BEFORE ffmpeg_command: " + ffmpegCommand);
+
     String image = ffmpegCommand.getImages().get(0);
     String music = ffmpegCommand.getSounds().get(0);
     String phraseSound = ffmpegCommand.getSounds().get(1);
@@ -19,8 +32,7 @@ public class FfmpegCommandConverter {
     String outputPath = ffmpegCommand.getOutputPath();
     String drawOptions = ffmpegCommand.getDrawOptions();
 
-
-    return new String[]{ffmpegStart, "-loop", "1", "-i", image,
+    return new String[]{ffmpegExecutable, "-loop", "1", "-i", image,
         "-i", music,
         "-i", phraseSound,
         "-filter_complex", "amerge=inputs=2",
@@ -36,5 +48,4 @@ public class FfmpegCommandConverter {
         "-shortest",
         "-t", "14", outputPath};
   }
-
 }

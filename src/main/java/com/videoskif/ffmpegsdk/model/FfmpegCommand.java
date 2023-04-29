@@ -8,7 +8,6 @@ import lombok.Data;
 @Builder
 public class FfmpegCommand {
 
-  private final String ffmpegStart = "/opt/homebrew/bin/ffmpeg";
   private List<String> images;
   private List<String> sounds;
   private List<String> phrases;
