@@ -1,3 +1,3 @@
 ### GET request with a header
-GET http://localhost:8085/topic/Belgrade
+GET http://localhost:8085/topic/Roman Republic
 Accept: application/json
