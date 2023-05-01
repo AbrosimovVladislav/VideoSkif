@@ -9,6 +9,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+/*
+* 1) Сделать длительность музыки во всю длину видео
+* 2)
+*
+* */
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -31,9 +37,12 @@ public class FfmpegVideoGenerator {
 
     String outputPath = DIRECTORY_PATH + FILENAME_PATTERN.replace("{num}", String.valueOf(randomService.randomNumber()));
 
-    String[] cmd = {"/opt/homebrew/bin/ffmpeg", "-loop", "1", "-i", image, "-i", music, "-i",
-        phraseSound,
-        "-filter_complex", "amerge=inputs=2",
+    String[] cmd = {"/opt/homebrew/bin/ffmpeg",
+        "-i", phraseSound,
+        "-i", music,
+        "-loop", "1", "-i", image,
+        "-filter_complex",
+        "amerge=inputs=2",
         "-vf",
         "scale=1920:1080,format=rgba,zoompan=z='min(max(zoom,pzoom)+0.0006,1.3)':d=125,fade=t=in:st=0:d=1:alpha=1,fade=t=out:st=14:d=1:alpha=1,drawbox=y=ih/2-25:color=black@0.5:width=iw:height=50:t=fill:enable='between(t,0,14)',drawtext=text='"
             + firstPhrase
@@ -44,7 +53,9 @@ public class FfmpegVideoGenerator {
             + ",drawtext=text='"
             + ADDITIONAL_PHRASE
             + "':fontcolor=white:fontsize=40:x=(w-text_w)/2:y=(h-text_h)/2:enable='between(t,11,14)'",
-        "-t", "14", outputPath};
+        "-t", "14",outputPath};
+
+    log.warn(String.join(" ", cmd));
 
     ProcessBuilder pb = new ProcessBuilder(cmd);
     pb.redirectErrorStream(true);
