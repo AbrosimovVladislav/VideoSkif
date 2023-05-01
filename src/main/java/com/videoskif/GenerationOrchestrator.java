@@ -1,5 +1,7 @@
 package com.videoskif;
 
+import static com.videoskif.ffmpegsdk.FfmpegVideoGenerator.ADDITIONAL_PHRASE;
+
 import com.videoskif.ffmpegsdk.FfmpegVideoGenerator;
 import com.videoskif.image.service.ImageGeneratorService;
 import com.videoskif.phrase.component.PhraseCombinator;
@@ -33,7 +35,10 @@ public class GenerationOrchestrator {
           var twoPartsPhrase = phraseCombinator.twoPartsPhrase(phrase);
           return generator.generateVideo(twoPartsPhrase.getKey(), twoPartsPhrase.getValue(),
               e.getValue(),
-              music, textReadingService.readText(phrase));
+              music, textReadingService.readText(twoPartsPhrase.getKey()
+                  + " AND "
+                  + twoPartsPhrase.getValue() + " "
+                  + ADDITIONAL_PHRASE));
         })
         .collect(Collectors.toList());
 

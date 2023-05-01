@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 /*
 * 1) Сделать длительность музыки во всю длину видео
-* 2)
+* 2) Сделать так, чтобы музыка была во всю длину видео, а спич можно было вставлять кусочек за кусочком
 *
 * */
 
@@ -46,13 +46,13 @@ public class FfmpegVideoGenerator {
         "-vf",
         "scale=1920:1080,format=rgba,zoompan=z='min(max(zoom,pzoom)+0.0006,1.3)':d=125,fade=t=in:st=0:d=1:alpha=1,fade=t=out:st=14:d=1:alpha=1,drawbox=y=ih/2-25:color=black@0.5:width=iw:height=50:t=fill:enable='between(t,0,14)',drawtext=text='"
             + firstPhrase
-            + "':fontcolor=white:fontsize=40:x=(w-text_w)/2:y=(h-text_h)/2:enable='between(t,0,5)'"
+            + "':fontcolor=white:fontsize=40:x=(w-text_w)/2:y=(h-text_h)/2:enable='between(t,0,3)'"
             + ",drawtext=text='"
             + secondPhrase
-            + "':fontcolor=white:fontsize=40:x=(w-text_w)/2:y=(h-text_h)/2:enable='between(t,6,10)'"
+            + "':fontcolor=white:fontsize=40:x=(w-text_w)/2:y=(h-text_h)/2:enable='between(t,3,6)'"
             + ",drawtext=text='"
             + ADDITIONAL_PHRASE
-            + "':fontcolor=white:fontsize=40:x=(w-text_w)/2:y=(h-text_h)/2:enable='between(t,11,14)'",
+            + "':fontcolor=white:fontsize=40:x=(w-text_w)/2:y=(h-text_h)/2:enable='between(t,6,10)'",
         "-t", "14",outputPath};
 
     log.warn(String.join(" ", cmd));
