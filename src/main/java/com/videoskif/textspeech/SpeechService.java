@@ -20,7 +20,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class TextReadingService {
+public class SpeechService {
 
   @Value("${text-speech.output-path}")
   public String FILE_OUTPUT_PATH;
