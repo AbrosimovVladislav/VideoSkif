@@ -44,7 +44,6 @@ public class FfmpegVideoGenerator {
             + ",drawtext=text='"
             + ADDITIONAL_PHRASE
             + "':fontcolor=white:fontsize=40:x=(w-text_w)/2:y=(h-text_h)/2:enable='between(t,11,14)'",
-        "-shortest",
         "-t", "14", outputPath};
 
     ProcessBuilder pb = new ProcessBuilder(cmd);

@@ -11,7 +11,7 @@ public class MusicService {
 
   //ToDo Implement
   public String getRandomMusicByTopicName(String topicName){
-    String musicUrl = "https://gunmarket.fra1.digitaloceanspaces.com/Roman%20Republic.mp3";
+    String musicUrl = "https://gunmarket.fra1.digitaloceanspaces.com/Roman%20Republic%20SILENCE-2.mp3";
     log.info("Music saved to s3. Music Url:<{}>", musicUrl);
     return musicUrl;
   }
