@@ -34,6 +34,10 @@ public class ImageGeneratorService {
         .collect(Collectors.toMap(SimpleEntry::getKey, SimpleEntry::getValue));
   }
 
+  public Map<String,String> getMockPictures(List<String> phrases){
+    return Map.of(phrases.get(0),"https://gunmarket.fra1.digitaloceanspaces.com/2.%20Rome's%20expansion%20during%20the%20Republic%20led%20to%20Punic%20Wars%20AND%20the%20defeat%20of%20Carthage.-7834592");
+  }
+
   private String getPictureByPhrase(String phrase) {
     DalleRequest dalleRequest =
         new DalleRequest(makePhraseMoreAccurateForModel(phrase), 1, IMAGE_SIZE);

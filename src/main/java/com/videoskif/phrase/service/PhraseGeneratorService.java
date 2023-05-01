@@ -26,6 +26,10 @@ public class PhraseGeneratorService {
     return phrases;
   }
 
+  public List<String> getMockPhrases(String topicName, Integer amountOfVideos){
+    return List.of("Rome's expansion during the Republic led to Punic Wars AND the final defeat of Carthage");
+  }
+
   private List<String> convertResponseToPhrases(String response) {
     String lines = response.substring(response.indexOf("\"content\":\""));
     lines = lines.replace("\"content\":\"", "");

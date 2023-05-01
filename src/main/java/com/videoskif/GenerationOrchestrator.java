@@ -23,8 +23,8 @@ public class GenerationOrchestrator {
   private final TextReadingService textReadingService;
 
   public List<String> generateVideos(String topicName, Integer amountOfVideos) {
-    var phrases = phraseGeneratorService.getPhrasesByTopicName(topicName, amountOfVideos);
-    var phrasesAndPictures = imageGeneratorService.getPicturesByPhrases(phrases);
+    var phrases = phraseGeneratorService.getMockPhrases(topicName, amountOfVideos);
+    var phrasesAndPictures = imageGeneratorService.getMockPictures(phrases);
     var music = musicService.getRandomMusicByTopicName(topicName);
 
     return phrasesAndPictures.entrySet().stream()
